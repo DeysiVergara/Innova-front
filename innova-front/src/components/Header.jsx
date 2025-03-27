@@ -1,17 +1,12 @@
 export default function Header() {
     return (
-    <header className="py-5 header">
-        <div className="container-xl">
-            <div className="row justify-content-center justify-content-md-between">
-                <div className="col-8 col-md-3">
-                    <a href="index.html">
-                        <img className="img-fluid" src="/banco.png" alt="imagen logo" />
-                    </a>
-                    <span>Credit Power</span>
-                </div>
-            </div>
+      <header className="app-header">
+        <div className="header-content">
+          <a href="/">
+            <img className="logo-img" src="/banco.png" alt="Logo 2BCP2" />
+          </a>
+          <span className="logo-subtitle">Credit Power</span>
         </div>
-    </header>
-    )
-}
-
+      </header>
+    );
+  }

@@ -1,58 +1,46 @@
 import React, { useState } from 'react';
 
 export default function FormularioSubida() {
-        const [imagen, setImagen] = useState(null);
-        const [texto, setTexto] = useState('');
-        const [mensaje, setMensaje] = useState('');
+  const [imagen, setImagen] = useState(null);
+  const [texto, setTexto] = useState('');
+  const [mensaje, setMensaje] = useState('');
 
-        const handleImagenChange = (e) => {
-          const archivo = e.target.files[0];
-          if (archivo) {
-            setImagen(URL.createObjectURL(archivo)); // Muestra una vista previa
-          }
-        };
-        const handleTextoChange = (e) => {
-            setTexto(e.target.value);
-        };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMensaje('Formulario enviado con éxito');
+  };
 
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            // Aquí podrías hacer una solicitud para enviar la imagen y el texto a un servidor
-            setMensaje('Formulario enviado con éxito');
-        };
-    return (
-        <>
-            <main className="container-xl mt-5">
-                <h2 className="text-center"></h2>
-                <div className="row mt-5">
-                    <h1>Formulario de Subida de Recibos</h1>
-                    <form onSubmit={(e) => handleSubmit(e)}>
-                        <div>
-                            <label htmlFor="imagen">Sube tu recibo (Imagen):</label>
-                            <div>
-                                <input
-                                type="file"
-                                id="imagen"
-                                accept="image/*"
-                                onChange={handleImagenChange}
-                                />
-                                {imagen && <img src={imagen} alt="Vista previa" width="200" />}
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlFor="texto">Descripción o notas:</label>
-                            <textarea
-                            id="texto"
-                            value={texto}
-                            onChange={handleTextoChange}
-                            placeholder="Ingresa cualquier texto relacionado con el recibo..."
-                            />
-                        </div>
-                        <button type="submit">Enviar</button>
-                    </form>
-                    {mensaje && <p>{mensaje}</p>}
-                </div>
-            </main>
-        </>
-    )
+  return (
+    <main className="main-content">
+      <div className="form-container">
+        <h1 className="form-title">Formulario de Subida de Recibos</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="form-label">Sube tu recibo (Imagen):</label>
+            <input
+              type="file"
+              className="form-input file-input"
+              accept="image/*"
+              onChange={(e) => setImagen(e.target.files[0] && URL.createObjectURL(e.target.files[0]))}
+            />
+            {imagen && <img src={imagen} alt="Vista previa" className="image-preview" />}
+          </div>
+          
+          <div className="form-group">
+            <label className="form-label">Descripción o notas:</label>
+            <textarea
+              className="form-input"
+              value={texto}
+              onChange={(e) => setTexto(e.target.value)}
+              placeholder="Ingresa cualquier texto relacionado con el recibo..."
+              rows="5"
+            />
+          </div>
+          
+          <button type="submit" className="submit-btn">Enviar</button>
+        </form>
+        {mensaje && <p className="success-message">{mensaje}</p>}
+      </div>
+    </main>
+  );
 }
