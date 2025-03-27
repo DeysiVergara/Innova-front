@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 export default function FormularioSubida() {
         const [imagen, setImagen] = useState(null);
         const [texto, setTexto] = useState('');

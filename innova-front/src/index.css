@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.img-fluid {
+  max-width: 10%;
+  height: auto;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
